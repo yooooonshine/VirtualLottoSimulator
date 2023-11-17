@@ -109,4 +109,5 @@
 	* 로또 회차와 로또 회차에 해당하는 로또 티켓
 * 로또 결과
 	* 로또 회차와 로또 화차에 해당하는 로또 당첨 번호 + 보너스 번호
-![image](https://github.com/yooooonshine/VirtualLottoSimulator/assets/108210104/71b16c85-c58b-4b66-9eb1-a261ba827610)
+![image](https://github.com/yooooonshine/VirtualLottoSimulator/assets/108210104/a6e9c966-6729-43c6-8766-ce407aedc93a)
+
