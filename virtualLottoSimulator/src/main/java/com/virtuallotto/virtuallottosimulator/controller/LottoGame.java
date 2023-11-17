@@ -1,23 +1,22 @@
 package com.virtuallotto.virtuallottosimulator.controller;
 
-import lotto.constants.GameNumberConstants;
-import lotto.constants.Rank;
-import lotto.domain.*;
-import lotto.dto.LottoTicketsDTO;
-import lotto.dto.WinningStatisticsDTO;
-import lotto.utility.LottoMachine;
-import lotto.validator.Validator;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.constants.Rank;
+import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
+import com.virtuallotto.virtuallottosimulator.dto.WinningStatisticsDTO;
+import com.virtuallotto.virtuallottosimulator.model.*;
+import com.virtuallotto.virtuallottosimulator.service.LottoMachine;
+import com.virtuallotto.virtuallottosimulator.validator.Validator;
+import com.virtuallotto.virtuallottosimulator.view.InputView;
+import com.virtuallotto.virtuallottosimulator.view.OutputView;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.Console.close;
-import static lotto.utility.GameUtility.*;
-import static lotto.validator.Validator.validateBonusNumberForm;
-import static lotto.validator.Validator.validateWinningNumberForm;
+import static com.virtuallotto.virtuallottosimulator.service.GameUtility.*;
+import static com.virtuallotto.virtuallottosimulator.validator.Validator.validateBonusNumberForm;
+import static com.virtuallotto.virtuallottosimulator.validator.Validator.validateWinningNumberForm;
 
 public class LottoGame {
     private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
@@ -35,7 +34,6 @@ public class LottoGame {
         customer.setEarnedMoney(calculateEarnedMoney(customer));
         RateOfReturn rateOfReturn = new RateOfReturn(calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment()));
         OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn.getRateOfReturn()));
-        endGame();
     }
 
     private static Payment getPaymentAndValidate() {
@@ -128,8 +126,5 @@ public class LottoGame {
         return df.format(amount);
     }
 
-    private static void endGame() {
-        close();
-    }
 }
 

@@ -1,5 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
+import com.virtuallotto.virtuallottosimulator.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

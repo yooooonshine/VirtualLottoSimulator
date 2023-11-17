@@ -1,11 +1,12 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
-import lotto.constants.GameNumberConstants;
-import lotto.constants.Rank;
-import lotto.domain.Customer;
-import lotto.domain.Lotto;
-import lotto.domain.WinningAndBonusNumber;
-import lotto.domain.WinningResult;
+
+import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.constants.Rank;
+import com.virtuallotto.virtuallottosimulator.model.Customer;
+import com.virtuallotto.virtuallottosimulator.model.Lotto;
+import com.virtuallotto.virtuallottosimulator.model.WinningAndBonusNumber;
+import com.virtuallotto.virtuallottosimulator.model.WinningResult;
 
 import java.util.Arrays;
 import java.util.List;

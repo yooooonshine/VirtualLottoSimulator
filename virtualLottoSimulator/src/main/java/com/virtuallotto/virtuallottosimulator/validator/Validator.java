@@ -1,6 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.validator;
 
-import lotto.constants.GameNumberConstants;
+
+import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
 
 import java.util.List;
 

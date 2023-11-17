@@ -1,6 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.dto;
 
-import lotto.domain.Lotto;
+
+import com.virtuallotto.virtuallottosimulator.model.Lotto;
 
 import java.util.List;
 

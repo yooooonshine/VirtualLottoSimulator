@@ -1,6 +1,8 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
-import lotto.validator.Validator;
+import com.virtuallotto.virtuallottosimulator.model.BonusNumber;
+import com.virtuallotto.virtuallottosimulator.model.WinningNumber;
+import com.virtuallotto.virtuallottosimulator.validator.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

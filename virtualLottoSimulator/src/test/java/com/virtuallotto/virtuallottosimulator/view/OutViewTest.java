@@ -1,9 +1,9 @@
 package com.virtuallotto.virtuallottosimulator.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.RateOfReturn;
-import lotto.domain.WinningResult;
-import lotto.dto.LottoTicketsDTO;
+import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
+import com.virtuallotto.virtuallottosimulator.model.Lotto;
+import com.virtuallotto.virtuallottosimulator.model.RateOfReturn;
+import com.virtuallotto.virtuallottosimulator.model.WinningResult;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.controller.LottoGame.makeWinningStatisticsDTO;
+import static com.virtuallotto.virtuallottosimulator.controller.LottoGame.makeWinningStatisticsDTO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutViewTest {

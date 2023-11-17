@@ -1,6 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
-import lotto.validator.Validator;
+
+import com.virtuallotto.virtuallottosimulator.validator.Validator;
 
 public class Payment {
     private int payment;

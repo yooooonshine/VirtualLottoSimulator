@@ -1,6 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
-import lotto.validator.LottoNumberValidator;
+
+import com.virtuallotto.virtuallottosimulator.validator.LottoNumberValidator;
 
 import java.util.List;
 

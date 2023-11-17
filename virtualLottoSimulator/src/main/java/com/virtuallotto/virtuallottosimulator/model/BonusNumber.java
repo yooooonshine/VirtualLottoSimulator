@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
-import lotto.validator.LottoNumberValidator;
+import com.virtuallotto.virtuallottosimulator.validator.LottoNumberValidator;
 
 public class BonusNumber {
     private static int number;

@@ -24,7 +24,7 @@ public enum Rank {
     }
 
     public int getNumberOfMatchesRequired() {
-        return numberOfMatchesRequiered;
+        return numberOfMatchesRequired;
     }
 
     public int getHasBonusNumber() {

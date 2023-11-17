@@ -2,7 +2,8 @@ package com.virtuallotto.virtuallottosimulator.validator;
 
 import java.util.List;
 
-import static lotto.constants.GameNumberConstants.*;
+import static com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants.*;
+
 
 public class LottoNumberValidator {
     private static final String LOTTO_INPUT_SHOULD_BE_N = "[ERROR] 복권 번호는 %d개 입력해야합니다.";

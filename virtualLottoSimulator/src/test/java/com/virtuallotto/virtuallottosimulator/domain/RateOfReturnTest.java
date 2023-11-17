@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
-import lotto.utility.GameUtility;
+import com.virtuallotto.virtuallottosimulator.service.GameUtility;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

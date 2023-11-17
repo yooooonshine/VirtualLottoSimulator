@@ -1,7 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
-import lotto.domain.Payment;
-import lotto.validator.Validator;
+import com.virtuallotto.virtuallottosimulator.model.Payment;
+import com.virtuallotto.virtuallottosimulator.validator.Validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

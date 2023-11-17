@@ -1,9 +1,11 @@
 package com.virtuallotto.virtuallottosimulator.view;
 
-import lotto.constants.GameNumberConstants;
-import lotto.domain.Lotto;
-import lotto.dto.LottoTicketsDTO;
-import lotto.dto.WinningStatisticsDTO;
+
+
+import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
+import com.virtuallotto.virtuallottosimulator.dto.WinningStatisticsDTO;
+import com.virtuallotto.virtuallottosimulator.model.Lotto;
 
 import java.util.List;
 
