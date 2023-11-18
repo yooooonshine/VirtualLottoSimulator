@@ -5,7 +5,9 @@ import com.virtuallotto.virtuallottosimulator.constants.Rank;
 import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
 import com.virtuallotto.virtuallottosimulator.dto.WinningStatisticsDTO;
 import com.virtuallotto.virtuallottosimulator.model.WinningResult;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DTOService {
     private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
 
