@@ -4,6 +4,7 @@ import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
 import com.virtuallotto.virtuallottosimulator.model.Lotto;
 import com.virtuallotto.virtuallottosimulator.model.RateOfReturn;
 import com.virtuallotto.virtuallottosimulator.model.WinningResult;
+import com.virtuallotto.virtuallottosimulator.service.DTOService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.virtuallotto.virtuallottosimulator.controller.LottoGame.makeWinningStatisticsDTO;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutViewTest {
@@ -85,11 +85,11 @@ public class OutViewTest {
             winningResult.addNumberOfPrizeFromIndex(4);
 
             RateOfReturn rateOfReturn = new RateOfReturn(50.0f); //수익률은 50프로
-
+            DTOService dtoService = new DTOService();
             // when
-            OutputView.printWinningStatistics(makeWinningStatisticsDTO(winningResult, rateOfReturn.getRateOfReturn()));
-            // then
+            OutputView.printWinningStatistics(dtoService.getWinningStatisticsDTO(winningResult, rateOfReturn.getRateOfReturn()));
 
+            // then
             assertThat(outputMessage.toString()).contains(
                     "3개 일치 (5,000원) - 0개",
                     "4개 일치 (50,000원) - 1개",

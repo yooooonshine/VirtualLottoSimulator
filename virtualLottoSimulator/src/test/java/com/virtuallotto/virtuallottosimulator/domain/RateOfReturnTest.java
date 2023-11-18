@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
-import com.virtuallotto.virtuallottosimulator.service.GameUtility;
+import com.virtuallotto.virtuallottosimulator.service.LottoCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +13,6 @@ public class RateOfReturnTest {
     @CsvSource(value = "1000,10,10000.0")
     void 입력_대비_수익률_테스트(int winningPrize, int payment, float rateOfReturn) {
         // when, then
-        Assertions.assertEquals(GameUtility.calculateRateOfReturn(winningPrize, payment),rateOfReturn);
+        Assertions.assertEquals(LottoCalculator.calculateRateOfReturn(winningPrize, payment),rateOfReturn);
     }
 }
