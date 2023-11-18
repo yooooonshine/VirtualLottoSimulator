@@ -21,43 +21,7 @@ public class LottoGame {
     private final LottoCalculator lottoCalculator;
     private final DTOService dtoService;
 
-    public LottoGame(
-        LottoMachine lottoMachine,
-        LottoCalculator lottoCalculator,
-        DTOService dtoService)
-    {
 
-        this.lottoMachine = lottoMachine;
-        this.lottoCalculator = lottoCalculator;
-        this.dtoService = dtoService;
-    }
-
-
-    public void run() {
-        Payment payment = getPaymentAndValidate();
-        List<Lotto> tickets = LottoMachine.generateTickets(payment.getPayment());
-        Customer customer = new Customer(payment, tickets);
-        printCustomerTickets(customer);
-        makeWinningAndBonusNumber();
-        customer.setWinningResult(calculateCustomerWinningResult(customer));
-        customer.setEarnedMoney(calculateEarnedMoney(customer));
-        RateOfReturn rateOfReturn = new RateOfReturn(calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment()));
-        OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn.getRateOfReturn()));
-    }
-
-
-    private void printCustomerTickets(Customer customer) {
-        OutputView.printLottoTickets(new LottoTicketsDTO(
-                customer.getLottoTickets().size(),
-                customer.getLottoTickets())
-        );
-    }
-
-    private WinningAndBonusNumber makeWinningAndBonusNumber() {
-        WinningNumber winningNumber = ();
-        BonusNumber bonusNumber = getBonusNumberAndValidate();
-        return WinningAndBonusNumber.create(winningNumber, bonusNumber);
-    }
 
 
 
