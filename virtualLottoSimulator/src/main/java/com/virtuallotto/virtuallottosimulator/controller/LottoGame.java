@@ -5,26 +5,35 @@ import com.virtuallotto.virtuallottosimulator.constants.Rank;
 import com.virtuallotto.virtuallottosimulator.dto.LottoTicketsDTO;
 import com.virtuallotto.virtuallottosimulator.dto.WinningStatisticsDTO;
 import com.virtuallotto.virtuallottosimulator.model.*;
+import com.virtuallotto.virtuallottosimulator.service.DTOService;
+import com.virtuallotto.virtuallottosimulator.service.LottoCalculator;
 import com.virtuallotto.virtuallottosimulator.service.LottoMachine;
-import com.virtuallotto.virtuallottosimulator.validator.Validator;
-import com.virtuallotto.virtuallottosimulator.view.InputView;
 import com.virtuallotto.virtuallottosimulator.view.OutputView;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
-import static com.virtuallotto.virtuallottosimulator.service.GameUtility.*;
-import static com.virtuallotto.virtuallottosimulator.validator.Validator.validateBonusNumberForm;
-import static com.virtuallotto.virtuallottosimulator.validator.Validator.validateWinningNumberForm;
+import static com.virtuallotto.virtuallottosimulator.service.LottoCalculator.*;
 
 public class LottoGame {
-    private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
 
-    private LottoGame() {
+    private final LottoMachine lottoMachine;
+    private final LottoCalculator lottoCalculator;
+    private final DTOService dtoService;
+
+    public LottoGame(
+        LottoMachine lottoMachine,
+        LottoCalculator lottoCalculator,
+        DTOService dtoService)
+    {
+
+        this.lottoMachine = lottoMachine;
+        this.lottoCalculator = lottoCalculator;
+        this.dtoService = dtoService;
     }
 
-    public static void run() {
+
+    public void run() {
         Payment payment = getPaymentAndValidate();
         List<Lotto> tickets = LottoMachine.generateTickets(payment.getPayment());
         Customer customer = new Customer(payment, tickets);
@@ -36,94 +45,31 @@ public class LottoGame {
         OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn.getRateOfReturn()));
     }
 
-    private static Payment getPaymentAndValidate() {
-        String paymentString;
-        Payment payment;
-        try {
-            OutputView.printInputPurchaseAmount();
-            paymentString = InputView.receiveUserInput();
-            Validator.isPrimeNumber(paymentString);
-            payment = new Payment(Integer.parseInt(paymentString));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            payment = getPaymentAndValidate();
-        }
-        return payment;
-    }
 
-    private static void printCustomerTickets(Customer customer) {
+    private void printCustomerTickets(Customer customer) {
         OutputView.printLottoTickets(new LottoTicketsDTO(
                 customer.getLottoTickets().size(),
                 customer.getLottoTickets())
         );
     }
 
-    private static WinningAndBonusNumber makeWinningAndBonusNumber() {
-        WinningNumber winningNumber = getWinningNumberAndValidate();
+    private WinningAndBonusNumber makeWinningAndBonusNumber() {
+        WinningNumber winningNumber = ();
         BonusNumber bonusNumber = getBonusNumberAndValidate();
         return WinningAndBonusNumber.create(winningNumber, bonusNumber);
     }
 
-    private static WinningNumber getWinningNumberAndValidate() {
-        String winningNumberString;
-        WinningNumber winningNumber;
+
+
+
+
+    public <T> T readUserInput(Supplier<T> read) {
         try {
-            OutputView.printInputWinningNumber();
-            winningNumberString = InputView.receiveUserInput();
-            validateWinningNumberForm(winningNumberString);
-            winningNumber = new WinningNumber(stringToIntList(winningNumberString));
+            return read.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            winningNumber = getWinningNumberAndValidate();
+            e.getMessage();
+            return readUserInput(read);
         }
-        return winningNumber;
-    }
-
-    private static List<Integer> stringToIntList(String input) {
-        return Arrays.stream(input.split(","))
-                .map((number) -> Integer.parseInt(number))
-                .toList();
-    }
-
-
-    private static BonusNumber getBonusNumberAndValidate() {
-        String numberString;
-        BonusNumber bonusNumber;
-        try {
-            OutputView.printInputBonusNumber();
-            numberString = InputView.receiveUserInput();
-            validateBonusNumberForm(numberString);
-            bonusNumber = new BonusNumber(Integer.parseInt(numberString));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bonusNumber = getBonusNumberAndValidate();
-        }
-        return bonusNumber;
-    }
-
-    public static WinningStatisticsDTO makeWinningStatisticsDTO(WinningResult winningResult, float rateOfReturn) {
-        String[][] winningStatisticsStrings = new String[GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue() + 1][4];
-
-        for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
-            winningStatisticsStrings[index] = new String[]{
-                    Integer.toString(Rank.getNumberOfMatchesRequiredFromIndex(index)),
-                    checkBonusBallString(Rank.getHasBonusNumberFromIndex(index)),
-                    addCommaToNumbers(Rank.getPrizeFromIndex(index)),
-                    Integer.toString(winningResult.getNumberOfPrizeFromIndex(index))};
-        }
-        return new WinningStatisticsDTO(winningStatisticsStrings, rateOfReturn);
-    }
-
-    public static String checkBonusBallString(int hasBonusNumber) {
-        if (hasBonusNumber == 1) {
-            return BONUS_BALL_MATCH;
-        }
-        return "";
-    }
-
-    public static String addCommaToNumbers(int amount) {
-        DecimalFormat df = new DecimalFormat("###,###");
-        return df.format(amount);
     }
 
 }

@@ -1,10 +1,15 @@
 package com.virtuallotto.virtuallottosimulator.view;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class InputView {
     private InputView() {}
 
     public static String receiveUserInput() {
-        return readLine();
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        br.readLine();
+        return "Hi";
     }
 }

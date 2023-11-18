@@ -24,6 +24,6 @@ public class WinningAndBonusNumber {
     }
 
     public static int getBonusNumber() {
-        return bonusNumber.getNumber();
+        return bonusNumber.getBonusNumber();
     }
 }
