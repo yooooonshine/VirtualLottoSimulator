@@ -61,7 +61,7 @@ public class UtilityTest {
             Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 39, 40)); //4등
             Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 38, 39, 40)); //5등
             List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3, lotto4, lotto5);
-            Customer user = new Customer(payment, lottoList);
+            User user = new User(payment, lottoList);
             LottoCalculator lottoCalculator = new LottoCalculator();
             // when
             WinningResult winningResult = lottoCalculator.calculateCustomerWinningResult(user);

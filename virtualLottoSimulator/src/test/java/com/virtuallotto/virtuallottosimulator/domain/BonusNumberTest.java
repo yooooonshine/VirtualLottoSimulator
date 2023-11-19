@@ -25,8 +25,8 @@ public class BonusNumberTest {
 
     @ParameterizedTest
     @DisplayName("로또 번호 범위가 주어진 범위를 넘었을 때 예외를 던지는 지 테스트")
-    @ValueSource(ints = {0,55})
-    void 로또_번호_범위_테스트(int input) {
+    @ValueSource(strings = {"0","55"})
+    void 로또_번호_범위_테스트(String input) {
         Assertions.assertThatThrownBy(
                 () -> new BonusNumber(input)
         ).isInstanceOf(IllegalArgumentException.class);
@@ -36,9 +36,9 @@ public class BonusNumberTest {
     @DisplayName("당첨 번호와 중복되면 예외를 던지는 지 테스트")
     void 로또_번호_중복_테스트() {
         // given
-        List<Integer> numbers= List.of(1,2,3,4,5,6);
+        String numbers = "1,2,3,4,5,6";
         WinningNumber winningNumber = new WinningNumber(numbers);
-        int bonusNumber = 6;
+        String bonusNumber = "6";
         // when, then
         Assertions.assertThatThrownBy(
                 () -> new BonusNumber(bonusNumber)

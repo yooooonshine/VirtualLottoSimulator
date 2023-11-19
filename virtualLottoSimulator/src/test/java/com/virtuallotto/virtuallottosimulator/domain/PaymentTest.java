@@ -20,24 +20,24 @@ public class PaymentTest {
 
     @ParameterizedTest
     @DisplayName("음수나 0을 넣었을 때 예외를 던지는 지 테스트한다.")
-    @ValueSource(ints = {-1, 0})
-    void 입력_음수테스트(int input) {
+    @ValueSource(strings = {"-1", "0"})
+    void 입력_음수테스트(String input) {
         Assertions.assertThatThrownBy(() -> new Payment(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("로또금액 단위에 안 맞으면 예외를 던지는 지 테스트한다.")
-    @ValueSource(ints = {100, 1100})
-    void 입력_단위테스트(int input) {
+    @ValueSource(strings = {"100", "1100"})
+    void 입력_단위테스트(String input) {
         Assertions.assertThatThrownBy(() -> new Payment(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("구입 금액 통합 테스트")
-    @ValueSource(ints = {1000, 5000})
-    void 구입_금액_통합테스트(int input) {
+    @ValueSource(strings = {"1000", "5000"})
+    void 구입_금액_통합테스트(String input) {
         Assertions.assertThatCode(() -> new Payment(input))
                 .doesNotThrowAnyException();
     }

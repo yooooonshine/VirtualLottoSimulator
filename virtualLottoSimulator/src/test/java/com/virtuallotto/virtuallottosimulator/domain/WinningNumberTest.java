@@ -20,14 +20,7 @@ public class WinningNumberTest {
     @DisplayName("당첨 번호가 6개가 아니면 예외를 던지는 지 테스트")
     void 당첨번호_개수_테스트() {
         // given
-        List<Integer> winningNumber = new ArrayList<>();
-        winningNumber.add(1);
-        winningNumber.add(2);
-        winningNumber.add(3);
-        winningNumber.add(4);
-        winningNumber.add(5);
-        winningNumber.add(6);
-        winningNumber.add(7);
+        String winningNumber = "1,2,3,4,5,6,7";
         // when,then
         Assertions.assertThatThrownBy(
                 () -> new WinningNumber(winningNumber)
@@ -60,13 +53,9 @@ public class WinningNumberTest {
     @DisplayName("중복된 로또 번호 입력했을 때 예외를 던지는 지 테스트")
     @ValueSource(strings = "1,2,3,4,5,5")
     void 중복_입력_테스트(String input) {
-        // given
-        List<Integer> intList = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
         // when,then
         Assertions.assertThatThrownBy(
-                () -> new WinningNumber(intList)
+                () -> new WinningNumber(input)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -74,13 +63,9 @@ public class WinningNumberTest {
     @DisplayName("숫자 범위 테스트")
     @ValueSource(strings = "1,2,3,4,5,55")
     void 숫자_범위_테스트(String input) {
-        // given
-        List<Integer> intList = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
         // when,then
         Assertions.assertThatThrownBy(
-                () -> new WinningNumber(intList)
+                () -> new WinningNumber(input)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

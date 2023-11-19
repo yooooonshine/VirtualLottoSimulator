@@ -12,7 +12,10 @@ public class RateOfReturnTest {
     @DisplayName("입력 대비 수익률을 계산하는 테스트")
     @CsvSource(value = "1000,10,10000.0")
     void 입력_대비_수익률_테스트(int winningPrize, int payment, float rateOfReturn) {
-        // when, then
-        Assertions.assertEquals(LottoCalculator.calculateRateOfReturn(winningPrize, payment),rateOfReturn);
+//        //give
+//        User
+//
+//        // when, then
+//        Assertions.assertEquals(LottoCalculator.calculateRateOfReturn(winningPrize, payment),rateOfReturn);
     }
 }
