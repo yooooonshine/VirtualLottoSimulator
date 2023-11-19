@@ -3,7 +3,7 @@ package com.virtuallotto.virtuallottosimulator.service;
 
 import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
 import com.virtuallotto.virtuallottosimulator.constants.Rank;
-import com.virtuallotto.virtuallottosimulator.model.Customer;
+import com.virtuallotto.virtuallottosimulator.model.User;
 import com.virtuallotto.virtuallottosimulator.model.Lotto;
 import com.virtuallotto.virtuallottosimulator.model.WinningAndBonusNumber;
 import com.virtuallotto.virtuallottosimulator.model.WinningResult;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class LottoCalculator {
 
-    public WinningResult calculateCustomerWinningResult(Customer user) {
+    public WinningResult calculateCustomerWinningResult(User user) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : user.getLottoTickets()) {
             int numberOfMatchingNumbers = findNumberOfCommonElements(lotto.numbers(), WinningAndBonusNumber.getWinningNumber());
@@ -47,16 +47,4 @@ public class LottoCalculator {
         return Rank.getIndexFromConditions(numberOfMatchingNumbers, hasBonusNumber);
     }
 
-    public static float calculateRateOfReturn(int winningPrize, int payment) {
-        return 100 * (float) winningPrize / (float) payment;
-    }
-
-    public int calculateEarnedMoney(Customer user) {
-        int winningPrize = 0;
-        WinningResult lottoResult = user.getWinningResult();
-        for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
-            winningPrize += lottoResult.getNumberOfPrizeFromIndex(index) * Rank.getPrizeFromIndex(index);
-        }
-        return winningPrize;
-    }
 }
