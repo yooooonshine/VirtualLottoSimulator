@@ -1,8 +1,11 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
+import org.springframework.stereotype.Component;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Component
 public class SHA256 {
     private final String CANT_USE_ENCRYPT_ALGORITHM = "[ERROR] 암호화 알고리즘을 사용할 수 없습니다. ";
 
