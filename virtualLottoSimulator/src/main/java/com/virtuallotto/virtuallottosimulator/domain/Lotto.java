@@ -15,7 +15,12 @@ public class Lotto {
 
     private String lottoNumber;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    public void setOrder(Order order) {
+        this.order = order;
+        order.getLottoList().add(this);
+    }
 }

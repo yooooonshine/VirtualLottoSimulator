@@ -1,21 +1,30 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
-
 import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
 import com.virtuallotto.virtuallottosimulator.model.Lotto;
 import com.virtuallotto.virtuallottosimulator.model.Payment;
+import com.virtuallotto.virtuallottosimulator.repository.LottoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants.*;
 
 @Service
-public class LottoMachine {
+@RequiredArgsConstructor
+public class LottoService {
+
+    private final LottoRepository lottoRepository;
+
+    public String save() {
+
+    }
+
 
     public List<Lotto> generateTickets(Payment payment) {
         int ticketAmount = payment.getPayment() / GameNumberConstants.LOTTO_PRICE.getValue();
@@ -31,7 +40,7 @@ public class LottoMachine {
     }
 
     private List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers =pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), NUMBER_OF_NUMBERS_TO_MATCH.getValue());
+        List<Integer> lottoNumbers = pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), NUMBER_OF_NUMBERS_TO_MATCH.getValue());
         return lottoNumbers.stream().sorted().collect(Collectors.toList());
     }
 
@@ -70,7 +79,7 @@ public class LottoMachine {
         }
     }
 
-    private  <T> List<T> shuffle(final List<T> list) {
+    private <T> List<T> shuffle(final List<T> list) {
         final List<T> result = new ArrayList<>(list);
         Collections.shuffle(result);
         return result;

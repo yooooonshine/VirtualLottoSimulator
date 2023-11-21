@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
-    <meta charset="UTF-8"
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
@@ -16,7 +14,7 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <!-- css파일 -->
-    <link rel="stylesheet" href="../static/css/signup.css" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/static/css/signup.css" type="text/css">
 
     <!-- 제이쿼리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -32,7 +30,6 @@
 <div class="signup-wrapper" style="margin: 0 auto; margin-top: 30px">
     <h2>회원가입</h2>
     <form action="" class="form-signin" method="POST" id="login-form">
-        {% csrf_token %}
         <br>
         아이디를 입력해주세요.
         <div style="display: flex; gap: 10px;">
@@ -63,7 +60,7 @@
     </div>
 </div>
 <script>const url = "{% url 'accounts:id_check' %}"</script>
-<script src='../static/js/signup.js'></script>
+<script src='${path}/resources/static/js/signup.js'></script>
 </body>
 </html>
 
