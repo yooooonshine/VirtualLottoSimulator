@@ -1,4 +1,4 @@
-package com.virtuallotto.virtuallottosimulator.domain;
+package com.virtuallotto.virtuallottosimulator.model;
 
 import com.virtuallotto.virtuallottosimulator.model.BonusNumber;
 import com.virtuallotto.virtuallottosimulator.model.WinningNumber;

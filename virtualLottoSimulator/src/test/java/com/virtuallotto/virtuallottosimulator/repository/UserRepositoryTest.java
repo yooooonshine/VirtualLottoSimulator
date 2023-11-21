@@ -1,5 +1,7 @@
-package com.virtuallotto.virtuallottosimulator.domain;
+package com.virtuallotto.virtuallottosimulator.repository;
 
+import com.virtuallotto.virtuallottosimulator.domain.User;
+import com.virtuallotto.virtuallottosimulator.repository.UserRepository;
 import com.virtuallotto.virtuallottosimulator.service.SHA256;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

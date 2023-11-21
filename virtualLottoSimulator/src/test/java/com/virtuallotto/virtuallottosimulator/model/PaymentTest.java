@@ -1,4 +1,4 @@
-package com.virtuallotto.virtuallottosimulator.domain;
+package com.virtuallotto.virtuallottosimulator.model;
 
 import com.virtuallotto.virtuallottosimulator.model.Payment;
 import com.virtuallotto.virtuallottosimulator.validator.Validator;
