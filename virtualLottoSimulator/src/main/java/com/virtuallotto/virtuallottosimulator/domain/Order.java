@@ -2,9 +2,7 @@ package com.virtuallotto.virtuallottosimulator.domain;
 
 import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +13,6 @@ import static com.virtuallotto.virtuallottosimulator.constants.NumberConstants.*
 @Table(name = "orders")
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Order {
     private static final String INPUT_IS_NOT_IN_UNITS_OF_LOTTO_PRICE = "[ERROR] 입력이 %d원 단위가 아닙니다.";
 
@@ -34,17 +31,33 @@ public class Order {
             mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    private List<Lotto> lottoList = new ArrayList<>();
+    private List<Lotto> lottoList;
 
 
     private int purchaseAmount;
 
     protected Order() {
+        this(null, 0);
     }
+
+    @Builder(access = AccessLevel.PRIVATE)
+    private Order(User user, int purchaseAmount){
+        this.user = user;
+        this.purchaseAmount = purchaseAmount;
+    }
+
+//    private void setUser(User user) {
+//        this.user = user;
+//    }
 
     private void setPurchaseAmount(int purchaseAmount) {
         isUnitsOfLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
+    }
+
+    public void addLotto(Lotto lotto) {
+        lottoList.add(lotto);
+        lotto.setOrder(this);
     }
 
     private  void isUnitsOfLottoPrice(int input) {
@@ -56,14 +69,18 @@ public class Order {
                 NumberConstants.LOTTO_PRICE.getValue()));
     }
 
-
-
     // 생성 메서드
 
-    public void createOrder(User User, int lottoRound, int purchaseAmount) {
-        Order order = new Order();
-        order.
-        order.setPurchaseAmount(purchaseAmount);
+    public static Order createOrder(User user, int purchaseAmount) {
+        return Order.builder()
+                .user(user)
+                .purchaseAmount(purchaseAmount)
+                .build();
+    }
+
+    //주문 삭제
+    public void cancel() {
+
     }
 
 }

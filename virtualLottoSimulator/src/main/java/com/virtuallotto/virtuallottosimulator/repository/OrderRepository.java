@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -15,5 +18,18 @@ public class OrderRepository {
 
     private final EntityManager em;
 
+    public Long save(Order order) {
+        em.persist(order);
+        return order.getId();
+    }
 
+    public Order findOne(Long id) {
+        return em.find(Order.class, id);
+    }
+
+    public List<Order> findAll(User user) {
+        return em.createQuery("select o from Order o where o.user  = :user", Order.class)
+                .setParameter("user", user)
+                .getResultList();
+    }
 }
