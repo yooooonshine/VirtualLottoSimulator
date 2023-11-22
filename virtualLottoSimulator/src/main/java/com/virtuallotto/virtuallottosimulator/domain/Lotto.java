@@ -1,15 +1,20 @@
 package com.virtuallotto.virtuallottosimulator.domain;
 
 
+import com.virtuallotto.virtuallottosimulator.service.ConvertService;
 import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Lotto {
 
     @Id
@@ -33,33 +38,28 @@ public class Lotto {
         this.lottoNumber = lottoNumber;
     }
 
-    private void setOrder(Order order) {
+    public void setOrder(Order order) {
         this.order = order;
         order.getLottoList().add(this);
     }
 
     // 생성 메서드
-    public static Lotto createLotto(int lottoRound, String lottoNumber, Order order) {
+    public static Lotto createLotto(int lottoRound, String lottoNumber) {
         validateLotto(lottoNumber);
         Lotto lotto = new Lotto();
         lotto.setLottoRound(lottoRound);
         lotto.setLottoNumber(lottoNumber);
-        lotto.setOrder(order);
         return lotto;
     }
 
     private static void validateLotto(String lottoNumber) {
-        List<Integer> lottoNumberList = makeStringToIntList(lottoNumber);
+        List<Integer> lottoNumberList = ConvertService.makeStringToIntList(lottoNumber);
         LottoValidator.validateLottoSize(lottoNumberList);
         LottoValidator.validateDuplication(lottoNumberList);
         LottoValidator.validateNumberRangeInLotto(lottoNumberList);
     }
 
-    private static List<Integer> makeStringToIntList(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .toList();
-    }
+
 
 
 

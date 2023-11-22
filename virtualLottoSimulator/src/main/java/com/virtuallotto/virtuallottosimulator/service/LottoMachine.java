@@ -2,8 +2,8 @@ package com.virtuallotto.virtuallottosimulator.service;
 
 
 import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
-import com.virtuallotto.virtuallottosimulator.model.Lotto;
-import com.virtuallotto.virtuallottosimulator.model.Payment;
+import com.virtuallotto.virtuallottosimulator.domain.Lotto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,17 +14,21 @@ import java.util.stream.Collectors;
 import static com.virtuallotto.virtuallottosimulator.constants.NumberConstants.*;
 
 @Service
+@RequiredArgsConstructor
 public class LottoMachine {
 
-    public List<Lotto> generateTickets(Payment payment) {
-        int ticketAmount = payment.getPayment() / NumberConstants.LOTTO_PRICE.getValue();
-        return generateLottoNumberRepeatNTimes(ticketAmount);
+    private final LottoService lottoService;
+
+    public List<Lotto> generateTickets(int purchaseAmount, int lottoRound) {
+        int ticketAmount = purchaseAmount / NumberConstants.LOTTO_PRICE.getValue();
+        return generateLottoNumberRepeatNTimes(ticketAmount, lottoRound);
     }
 
-    private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
+    private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber, int lottoRound) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < repeatNumber; i++) {
-            lottoTickets.add(new Lotto(generateLottoNumber()));
+            Lotto lotto = Lotto.createLotto(lottoRound, ConvertService.makeIntListToString(generateLottoNumber()));
+            lottoTickets.add(lottoService.saveLotto(lotto));
         }
         return lottoTickets;
     }

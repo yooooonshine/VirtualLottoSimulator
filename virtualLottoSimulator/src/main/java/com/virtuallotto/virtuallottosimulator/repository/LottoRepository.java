@@ -17,16 +17,18 @@ public class LottoRepository {
 
     private final EntityManager em;
 
-    public void save(Lotto lotto) {
+    public Lotto save(Lotto lotto) {
         em.persist(lotto);
+        return lotto;
     }
 
     public Lotto findOne(Long id) {
         return em.find(Lotto.class, id);
     }
 
-    public List<Lotto> findAll() {
-        return em.createQuery("select l from Lotto l", Lotto.class)
+    public List<Lotto> findAllFromOrder(Order order) {
+        return em.createQuery("select l from Lotto l where l.order = :order", Lotto.class)
+                .setParameter("order", order)
                 .getResultList();
     }
 }
