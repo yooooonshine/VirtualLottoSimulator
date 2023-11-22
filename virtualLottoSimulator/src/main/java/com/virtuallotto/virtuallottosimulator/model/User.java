@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
-import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
 import com.virtuallotto.virtuallottosimulator.constants.Rank;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class User {
 
     public int getEarnedMoney() {
         int winningPrize = 0;
-        for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
+        for (int index = 1; index <= NumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {
             winningPrize += winningResult.getNumberOfPrizeFromIndex(index) * Rank.getPrizeFromIndex(index);
         }
         return winningPrize;

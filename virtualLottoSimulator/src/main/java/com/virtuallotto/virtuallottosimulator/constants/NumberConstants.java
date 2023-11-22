@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.constants;
 
-public enum GameNumberConstants {
+public enum NumberConstants {
     LOTTO_PRICE(1000),
     MAX_LOTTO_NUMBER(45),
     MIN_LOTTO_NUMBER(1),
@@ -9,7 +9,7 @@ public enum GameNumberConstants {
 
     private final int value;
 
-    GameNumberConstants(int value){
+    NumberConstants(int value){
         this.value = value;
 
     }

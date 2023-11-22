@@ -1,14 +1,14 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
 
-import com.virtuallotto.virtuallottosimulator.validator.LottoNumberValidator;
+import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 
 import java.util.List;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto {
-        LottoNumberValidator.validateLottoSize(numbers);
-        LottoNumberValidator.validateDuplication(numbers);
-        LottoNumberValidator.validateNumberRangeInLotto(numbers);
+        LottoValidator.validateLottoSize(numbers);
+        LottoValidator.validateDuplication(numbers);
+        LottoValidator.validateNumberRangeInLotto(numbers);
     }
 }

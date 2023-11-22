@@ -1,7 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
 
-import com.virtuallotto.virtuallottosimulator.validator.LottoNumberValidator;
+import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,9 +14,9 @@ public class WinningNumber {
     public WinningNumber(String winningNumberString) {
         validateWinningNumberForm(winningNumberString);
         List<Integer> winningNumbers = stringToIntList(winningNumberString);
-        LottoNumberValidator.validateLottoSize(winningNumbers);
-        LottoNumberValidator.validateDuplication(winningNumbers);
-        LottoNumberValidator.validateNumberRangeInLotto(winningNumbers);
+        LottoValidator.validateLottoSize(winningNumbers);
+        LottoValidator.validateDuplication(winningNumbers);
+        LottoValidator.validateNumberRangeInLotto(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 

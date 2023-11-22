@@ -1,7 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.validator;
 
 
-import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
 
 import java.util.List;
 
@@ -43,12 +43,12 @@ public class Validator {
     }
 
     public static void isUnitsOfLottoPrice(int input) {
-        if (input % GameNumberConstants.LOTTO_PRICE.getValue() == 0) {
+        if (input % NumberConstants.LOTTO_PRICE.getValue() == 0) {
             return;
         }
         throw new IllegalArgumentException(String.format(
                 INPUT_IS_NOT_IN_UNITS_OF_LOTTO_PRICE,
-                GameNumberConstants.LOTTO_PRICE.getValue()));
+                NumberConstants.LOTTO_PRICE.getValue()));
     }
 
     public static void checkWinningNumberForm(String winningNumber) {

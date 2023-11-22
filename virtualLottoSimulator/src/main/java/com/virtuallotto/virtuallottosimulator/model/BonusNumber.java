@@ -1,6 +1,6 @@
 package com.virtuallotto.virtuallottosimulator.model;
 
-import com.virtuallotto.virtuallottosimulator.validator.LottoNumberValidator;
+import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 
 import static com.virtuallotto.virtuallottosimulator.validator.Validator.validateBonusNumberForm;
 
@@ -19,8 +19,8 @@ public class BonusNumber {
     }
 
     private void validator(int bonusNumber) {
-        LottoNumberValidator.validateLottoNumberRange(bonusNumber);
-        LottoNumberValidator.validateDuplication(bonusNumber,WinningNumber.getWinningNumbers());
+        LottoValidator.validateLottoNumberRange(bonusNumber);
+        LottoValidator.validateDuplication(bonusNumber,WinningNumber.getWinningNumbers());
     }
 
 }

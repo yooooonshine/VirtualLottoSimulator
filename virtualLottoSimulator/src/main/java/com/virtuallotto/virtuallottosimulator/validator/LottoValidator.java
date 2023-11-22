@@ -2,10 +2,10 @@ package com.virtuallotto.virtuallottosimulator.validator;
 
 import java.util.List;
 
-import static com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants.*;
+import static com.virtuallotto.virtuallottosimulator.constants.NumberConstants.*;
 
 
-public class LottoNumberValidator {
+public class LottoValidator {
     private static final String LOTTO_INPUT_SHOULD_BE_N = "[ERROR] 복권 번호는 %d개 입력해야합니다.";
     private static final String SHOULD_NOT_DUPLICATE = "[ERROR] 복권 번호는 중복되면 안됩니다.";
     private static final String SHOULD_BE_IN_LOTTO_NUMBER_RANGE = "[ERROR] 복권 번호는 %d이상 %d이하 이어야 합니다.";
@@ -20,6 +20,7 @@ public class LottoNumberValidator {
         );
     }
 
+    //로또 중복 확인
     public static void validateDuplication(List<Integer> numbers) {
         int deduplicatedNumbersSize = (int) numbers.stream()
                 .distinct()
@@ -30,6 +31,7 @@ public class LottoNumberValidator {
         throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE);
     }
 
+    //보너스 번호 중복 확인
     public static void validateDuplication(int bonusNumber, List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
             throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE);
@@ -50,7 +52,7 @@ public class LottoNumberValidator {
         }
     }
 
-    public static boolean isInLottoNumberRange(int number) {
+    private static boolean isInLottoNumberRange(int number) {
         return (number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue());
     }
 }

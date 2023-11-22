@@ -1,7 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
 
-import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
+import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
 import com.virtuallotto.virtuallottosimulator.model.Lotto;
 import com.virtuallotto.virtuallottosimulator.model.Payment;
 import org.springframework.stereotype.Service;
@@ -9,16 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
-import static com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants.*;
+import static com.virtuallotto.virtuallottosimulator.constants.NumberConstants.*;
 
 @Service
 public class LottoMachine {
 
     public List<Lotto> generateTickets(Payment payment) {
-        int ticketAmount = payment.getPayment() / GameNumberConstants.LOTTO_PRICE.getValue();
+        int ticketAmount = payment.getPayment() / NumberConstants.LOTTO_PRICE.getValue();
         return generateLottoNumberRepeatNTimes(ticketAmount);
     }
 
