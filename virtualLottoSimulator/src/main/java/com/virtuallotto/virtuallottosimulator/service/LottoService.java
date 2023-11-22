@@ -1,42 +1,39 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
-import com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants;
-import com.virtuallotto.virtuallottosimulator.model.Lotto;
+import com.virtuallotto.virtuallottosimulator.constants.NumberConstants;
+import com.virtuallotto.virtuallottosimulator.domain.Lotto;
+import com.virtuallotto.virtuallottosimulator.domain.Order;
 import com.virtuallotto.virtuallottosimulator.model.Payment;
 import com.virtuallotto.virtuallottosimulator.repository.LottoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.virtuallotto.virtuallottosimulator.constants.GameNumberConstants.*;
+import static com.virtuallotto.virtuallottosimulator.constants.NumberConstants.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class LottoService {
 
     private final LottoRepository lottoRepository;
 
-    public String save() {
+    public void generateAndSaveLotto(int lottoRound, Order order) {
+        List<Integer> lottoNUmberList = generateLottoNumber();
+        String lottoNumber = makeIntListToString(lottoNUmberList);
+        Lotto lotto = Lotto.createLotto(lottoRound, lottoNumber, order);
+        lottoRepository.save(lotto);
 
     }
 
-
-    public List<Lotto> generateTickets(Payment payment) {
-        int ticketAmount = payment.getPayment() / GameNumberConstants.LOTTO_PRICE.getValue();
-        return generateLottoNumberRepeatNTimes(ticketAmount);
-    }
-
-    private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
-        List<Lotto> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < repeatNumber; i++) {
-            lottoTickets.add(new Lotto(generateLottoNumber()));
-        }
-        return lottoTickets;
+    @Transactional(readOnly = true)
+    public List<Lotto> findAll() {
+        return lottoRepository.findAll();
     }
 
     private List<Integer> generateLottoNumber() {
@@ -83,5 +80,9 @@ public class LottoService {
         final List<T> result = new ArrayList<>(list);
         Collections.shuffle(result);
         return result;
+    }
+
+    private String makeIntListToString(List<Integer> lottoNumberList) {
+        return String.join(",", (CharSequence) lottoNumberList);
     }
 }
