@@ -21,7 +21,6 @@ public class Lotto {
 
     private String lottoNumber;
 
-    private int lottoRound;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
@@ -33,16 +32,14 @@ public class Lotto {
     }
 
     @Builder
-    private Lotto(int lottoRound, String lottoNumber) {
-        this.lottoRound = lottoRound;
+    private Lotto( String lottoNumber) {
         this.lottoNumber = lottoNumber;
     }
 
     // 생성 메서드
-    public static Lotto createLotto(int lottoRound, String lottoNumber) {
+    public static Lotto createLotto(String lottoNumber) {
         validateLotto(lottoNumber);
         return Lotto.builder()
-                .lottoRound(lottoRound)
                 .lottoNumber(lottoNumber)
                 .build();
     }

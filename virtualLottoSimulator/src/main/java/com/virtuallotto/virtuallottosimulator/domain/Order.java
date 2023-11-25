@@ -33,10 +33,12 @@ public class Order {
             fetch = FetchType.LAZY)
     private List<Lotto> lottoList = new ArrayList<>();
 
+    private int lottoRound;
+
     private int purchaseAmount;
 
     // 생성 메서드
-    public static Order createOrder(User user, int purchaseAmount) {
+    public static Order createOrder(User user, int purchaseAmount, int lottoRound) {
         Order order = new Order();
         order.setUser(user);
         order.setPurchaseAmount(purchaseAmount);
@@ -51,6 +53,10 @@ public class Order {
     private void setPurchaseAmount(int purchaseAmount) {
         isUnitsOfLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
+    }
+
+    private void setLottoRound(int lottoRound) {
+        this.lottoRound = lottoRound;
     }
 
     public void addLotto(Lotto lotto) {

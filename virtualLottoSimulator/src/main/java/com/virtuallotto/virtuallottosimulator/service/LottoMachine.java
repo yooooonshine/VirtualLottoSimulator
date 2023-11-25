@@ -19,15 +19,15 @@ public class LottoMachine {
 
     private final LottoService lottoService;
 
-    public List<Lotto> generateTickets(int purchaseAmount, int lottoRound) {
+    public List<Lotto> generateTickets(int purchaseAmount) {
         int ticketAmount = purchaseAmount / NumberConstants.LOTTO_PRICE.getValue();
-        return generateLottoNumberRepeatNTimes(ticketAmount, lottoRound);
+        return generateLottoNumberRepeatNTimes(ticketAmount);
     }
 
-    private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber, int lottoRound) {
+    private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < repeatNumber; i++) {
-            Lotto lotto = Lotto.createLotto(lottoRound, ConvertService.makeIntListToString(generateLottoNumber()));
+            Lotto lotto = Lotto.createLotto(ConvertService.makeIntListToString(generateLottoNumber()));
             lottoTickets.add(lottoService.saveLotto(lotto));
         }
         return lottoTickets;

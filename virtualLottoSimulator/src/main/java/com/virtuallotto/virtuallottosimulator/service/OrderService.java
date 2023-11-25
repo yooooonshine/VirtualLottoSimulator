@@ -21,9 +21,9 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public Long order(User user, int purchaseAmount, int lottoRound) {
-        Order order = Order.createOrder(user, purchaseAmount);
+        Order order = Order.createOrder(user, purchaseAmount, lottoRound);
 
-        List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount, lottoRound);
+        List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount);
         lottoList.stream()
                 .forEach(lotto -> order.addLotto(lotto));
 
