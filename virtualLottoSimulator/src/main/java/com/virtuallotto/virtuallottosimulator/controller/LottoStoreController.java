@@ -1,8 +1,5 @@
 package com.virtuallotto.virtuallottosimulator.controller;
 
-import com.virtuallotto.virtuallottosimulator.model.Lotto;
-import com.virtuallotto.virtuallottosimulator.model.Payment;
-import com.virtuallotto.virtuallottosimulator.service.DTOService;
 import com.virtuallotto.virtuallottosimulator.service.LottoCalculator;
 import com.virtuallotto.virtuallottosimulator.service.LottoMachine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +13,11 @@ import java.util.function.Supplier;
 
 @Controller
 public class LottoStoreController {
-    private final DTOService dtoService;
     private final LottoCalculator lottoCalculator;
     private final LottoMachine lottoMachine;
 
     @Autowired
-    public LottoStoreController(DTOService dtoService, LottoCalculator lottoCalculator, LottoMachine lottoMachine) {
-        this.dtoService = dtoService;
+    public LottoStoreController(LottoCalculator lottoCalculator, LottoMachine lottoMachine) {
         this.lottoCalculator = lottoCalculator;
         this.lottoMachine = lottoMachine;
     }
@@ -35,16 +30,16 @@ public class LottoStoreController {
     }
 
     @GetMapping("lottoStore-parchaseAmount")
-    public String buyTickets(
+    public String order(
             @RequestParam("purchaseAmount") String purchaseAmount,
             @RequestParam("userId") String userId,
             Model model)
     {
-        Payment payment = new Payment(purchaseAmount);
-        List<Lotto> tickets =  lottoMachine.generateTickets(payment);
+//        Payment payment = new Payment(purchaseAmount);
+//        List<Lotto> tickets =  lottoMachine.generateTickets(payment);
 
 
-        model.addAttribute("tickets", tickets);
+//        model.addAttribute("tickets", tickets);
         return "lottoStore";
     }
 

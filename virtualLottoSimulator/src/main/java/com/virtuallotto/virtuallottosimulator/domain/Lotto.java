@@ -4,10 +4,7 @@ package com.virtuallotto.virtuallottosimulator.domain;
 import com.virtuallotto.virtuallottosimulator.service.ConvertService;
 import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,26 +27,24 @@ public class Lotto {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private void setLottoRound(int lottoRound) {
-        this.lottoRound = lottoRound;
-    }
-
-    private void setLottoNumber(String lottoNumber) {
-        this.lottoNumber = lottoNumber;
-    }
-
     public void setOrder(Order order) {
         this.order = order;
         order.getLottoList().add(this);
     }
 
+    @Builder
+    private Lotto(int lottoRound, String lottoNumber) {
+        this.lottoRound = lottoRound;
+        this.lottoNumber = lottoNumber;
+    }
+
     // 생성 메서드
     public static Lotto createLotto(int lottoRound, String lottoNumber) {
         validateLotto(lottoNumber);
-        Lotto lotto = new Lotto();
-        lotto.setLottoRound(lottoRound);
-        lotto.setLottoNumber(lottoNumber);
-        return lotto;
+        return Lotto.builder()
+                .lottoRound(lottoRound)
+                .lottoNumber(lottoNumber)
+                .build();
     }
 
     private static void validateLotto(String lottoNumber) {

@@ -3,9 +3,12 @@ package com.virtuallotto.virtuallottosimulator.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Getter @Setter
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
@@ -14,4 +17,19 @@ public class User {
     private String id;
 
     private String password;
+
+    @Builder
+    private User(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
+
+
+
+    public static User createUser(String id, String password) {
+        return builder()
+                .id(id)
+                .password(password)
+                .build();
+    }
 }

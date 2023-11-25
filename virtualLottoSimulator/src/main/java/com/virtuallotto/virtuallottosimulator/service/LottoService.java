@@ -18,7 +18,8 @@ public class LottoService {
 
     @Transactional
     public Lotto saveLotto(Lotto lotto) {
-        return lottoRepository.save(lotto);
+        lottoRepository.save(lotto);
+        return lotto;
     }
 
     public List<Lotto> findAllFromOrder(Order order) {
