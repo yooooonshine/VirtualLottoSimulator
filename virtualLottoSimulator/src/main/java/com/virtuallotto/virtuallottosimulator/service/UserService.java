@@ -26,7 +26,7 @@ public class UserService {
 
         String encryptedPassword = sha256.encrypt(password);
 
-        User user = new User(id, encryptedPassword);
+        User user = User.createUser(id, encryptedPassword);
         userRepository.save(user);
         return user.getId();
     }

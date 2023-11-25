@@ -23,13 +23,4 @@ public class OrderRepository {
         return order.getId();
     }
 
-    public Order findOne(Long id) {
-        return em.find(Order.class, id);
-    }
-
-    public List<Order> findAll(User user) {
-        return em.createQuery("select o from Order o where o.user  = :user", Order.class)
-                .setParameter("user", user)
-                .getResultList();
-    }
 }

@@ -24,7 +24,10 @@ public class User {
         this.password = password;
     }
 
-
+    @OneToMany(
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<Order> orderList = new ArrayList<>();
 
     public static User createUser(String id, String password) {
         return builder()

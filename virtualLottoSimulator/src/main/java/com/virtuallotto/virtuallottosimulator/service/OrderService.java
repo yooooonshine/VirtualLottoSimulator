@@ -21,10 +21,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public Long order(User user, int purchaseAmount, int lottoRound) {
-        List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount, lottoRound);
         Order order = Order.createOrder(user, purchaseAmount);
+
+        List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount, lottoRound);
         lottoList.stream()
                 .forEach(lotto -> order.addLotto(lotto));
+
         orderRepository.save(order);
         return order.getId();
     }
