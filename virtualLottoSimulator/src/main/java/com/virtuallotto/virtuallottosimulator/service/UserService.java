@@ -1,13 +1,18 @@
 package com.virtuallotto.virtuallottosimulator.service;
 
+import com.virtuallotto.virtuallottosimulator.domain.Order;
 import com.virtuallotto.virtuallottosimulator.domain.User;
 import com.virtuallotto.virtuallottosimulator.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Synchronized;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +52,13 @@ public class UserService {
         return user.getPassword().equals(encryptedPassword);
     }
 
+    @Transactional(readOnly = true)
+    public List<Order> getOrderListFromLottoRound(String id, int lottoRound) {
+        User user = userRepository.findOne(id);
+        List<Order> orderList = user.getOrderList();
+        return orderList.stream()
+                .filter(order -> order.getLottoRound() == lottoRound)
+                .collect(Collectors.toList());
 
+    }
 }
