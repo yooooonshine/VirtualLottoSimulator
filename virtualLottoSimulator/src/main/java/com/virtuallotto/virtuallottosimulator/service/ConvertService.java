@@ -2,6 +2,8 @@ package com.virtuallotto.virtuallottosimulator.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ConvertService {
 
@@ -14,6 +16,8 @@ public class ConvertService {
     }
 
     public static String makeIntListToString(List<Integer> lottoNumberList) {
-        return String.join(",", (CharSequence) lottoNumberList);
+        return lottoNumberList.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(","));
     }
 }

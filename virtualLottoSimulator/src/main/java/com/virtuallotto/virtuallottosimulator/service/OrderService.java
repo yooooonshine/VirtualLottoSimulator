@@ -20,7 +20,7 @@ public class OrderService {
     private final LottoRepository lottoRepository;
     private final OrderRepository orderRepository;
 
-    public Long order(User user, int purchaseAmount, int lottoRound) {
+    public Long order(User user, Integer purchaseAmount, Integer lottoRound) {
         Order order = Order.createOrder(user, purchaseAmount, lottoRound);
 
         List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount);

@@ -1,5 +1,7 @@
 package com.virtuallotto.virtuallottosimulator.repository;
 
+import com.virtuallotto.virtuallottosimulator.domain.Lotto;
+import com.virtuallotto.virtuallottosimulator.domain.Order;
 import com.virtuallotto.virtuallottosimulator.domain.User;
 import com.virtuallotto.virtuallottosimulator.service.SHA256;
 import jakarta.persistence.EntityManager;
