@@ -30,11 +30,10 @@ class LottoServiceTest {
     @DisplayName("로또 저장을 하였을 떄 정상적으로 저장되는 지 테스트한다.")
     public void 로또_발행_테스트() {
         //give
-        int lottoRound  = 10;
         String lottoNumber = "1,2,3,4,5,6";
 
         //when
-        Lotto lotto = Lotto.createLotto(lottoRound, lottoNumber);
+        Lotto lotto = Lotto.createLotto(lottoNumber);
         Long savedLottoId = lottoService.saveLotto(lotto).getId();
 
         // then

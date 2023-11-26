@@ -30,8 +30,6 @@ class UserServiceTest {
         String id  = "abcd";
         String password = "abcdedf123";
 
-
-
         //when
         String savedId = userService.join(id, password);
         User findUser = userRepository.findOne(savedId);
