@@ -27,36 +27,39 @@
 <body>
 
 <div class="signup-wrapper" style="margin: 0 auto; margin-top: 30px">
-    <h2>회원가입</h2>
-    <form action="" class="form-signin" method="POST" id="login-form">
+    <div>회원가입</div>
+    <form action="/user/signup" class="form-signin" method="POST" id="login-form">
         <br>
         아이디를 입력해주세요.
         <div style="display: flex; gap: 10px;">
-        <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required>
-        <input type="button" id="overlay" value="중복 체크"></div><br>
-        <p id="idch" class="check"> </p><br/>
-        비밀번호를 입력해주세요.
-        <input type="password" name="password1" id="password1" class="form-control" placeholder="Password" autofocus required><br>
+            <input type="id" name="id" id="id" class="form-control" placeholder="사용할 Id를 입력해 주세요." autofocus required>
+            <button type="button" class="btn btn-primary" onclick = "checkId()">중복 체크</button>
+        </div>
+        <br>
 
+        비밀번호를 입력해주세요.
+        <input type="password" name="password" id="password1" class="form-control" placeholder="사용할 password를 입력해 주세요." autofocus
+               required><br>
 
         비밀번호를 다시 한 번 입력해주세요.
-        <input type="password"  id="password2" class="form-control" placeholder="Checking Password" autofocus required>
+        <input type="password" id="password2" class="form-control" placeholder="사용할 password를 다시 한번 입력해 주세요." autofocus required>
 
-        <div class="alert alert-success" id="alert-success" style="">비밀번호가 일치합니다.</div>
-        <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-        이메일을 입력해주세요.
-        <div style="display: flex; gap: 10px;">
-        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" autofocus required>
-        <input type="button" id="emoverlay"  value="중복 체크"></div><br>
-        <p id="emch" class="check"> </p><br>
-        <button type="button" id="btn-Yes" class="btn btn-lg btn-primary btn-block"  onclick="regist()">회원가입</button><br>
+        <!--        이메일을 입력해주세요.-->
+        <!--        <div style="display: flex; gap: 10px;">-->
+        <!--        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" autofocus required>-->
+        <!--        <input type="button" id="emoverlay"  value="중복 체크"></div><br>-->
+        <!--        <p id="emch" class="check"> </p><br>-->
+
+        <button type="button" class="btn btn-primary" onclick = "signup()">회원가입</button>
+        <br>
     </form>
     <br>
     <div class="links" style="position: center">
-    <a href="memberId.html">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> | <a href="/">로그인하기</a>
+        <a href="memberId.html">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> | <a href="/">로그인하기</a>
     </div>
 </div>
-<script src='js/signup.js'></script>
+<script src='/js/signup.js'></script>
+
 </body>
 </html>
 

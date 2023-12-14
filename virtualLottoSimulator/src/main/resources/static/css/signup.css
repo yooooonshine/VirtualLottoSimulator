@@ -43,6 +43,7 @@
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+
 #id {
     width: 80%;
     height: 48px;
@@ -52,6 +53,7 @@
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+
 #overlay {
     width: 20%;
     height: 48px;
@@ -71,6 +73,7 @@
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+
 #emoverlay {
     width: 20%;
     height: 48px;
@@ -80,11 +83,10 @@
     border-radius: 6px;
     background-color: #F8F8F8;
 }
+
 #login-form > input::placeholder {
     color: #D2D2D2;
 }
-
-
 
 
 #login-form > input[type="checkbox"] {
@@ -124,17 +126,8 @@ a {
 }
 
 
-#alert-success {
-    font-size: 15px;
-    text-align: center;
-}
-
-#alert-danger {
-    font-size: 15px;
-    text-align: center;
-}
- #btn-Yes {
-     color: #fff;
+#btn-Yes {
+    color: #fff;
     font-size: 16px;
     background-color: rgb(119, 67, 219);
     /*margin-top: 20px;*/
@@ -143,6 +136,6 @@ a {
     border: none;
     text-align: center;
     margin-left: 170px;
-    }
+}
 
 
