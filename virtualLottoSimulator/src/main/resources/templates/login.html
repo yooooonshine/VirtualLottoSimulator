@@ -28,20 +28,18 @@
 
 <div class="login-wrapper" style="margin: 0 auto; margin-top: 120px;">
     <h2>가상 로또 시뮬레이터</h2>
-    <form action="" class="form-signin" method="POST" id="login-form">
-        <input type="id" name="id" id="id" class="form-control" placeholder="Id" autofocus required><BR>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required><br>
-            <p class="check" id="check">${check}</p><br/>
-            <label for="remember-check">
+        <input type="id" id="id" class="form-control" placeholder="Id" autofocus required><BR>
+        <input type="password" id="password" class="form-control" placeholder="Password" required><br>
+        <label for="remember-check">
             <input type="checkbox" id="remember-check">아이디 저장하기
-    </label><input type="submit" value="로그인">
-    </form>
+        </label>
+        <button type="button" class="btn btn-primary" onclick = "login()">로그인</button>
     <br><br><br>
     <div class="links" style="position: center;">
         <a href="memberId.html">아이디 찾기</a> | <a href="memberPw">비밀번호 찾기</a> |
         <a href="/user/signup" >회원가입하기</a>
     </div>
 </div>
-<script src = 'js/login.js'></script>
+<script src = '/js/login.js'></script>
 </body>
 </html>

@@ -1,19 +1,46 @@
-$("#id").focusout(function(){
 
- if($('#id').val() == ""){
-    $('#check').text('아이디를 입력해주세요.');
-    $('#check').css('color', '#6A24FE');
+function checkId(id) {
+    if(id == ""){
+        alert('아이디를 입력해주세요.');
+        return false;
+    }
+    return true;
+}
 
- }else{
-     $('#check').hide();
- }
- });
+function checkPassword(password) {
+    if(password == ""){
+        alert('패스워드를 입력해주세요.');
+        return false;
+    }
+    return true;
+}
 
-$("#pass").focusout(function(){
- if($('#pass').val() == ""){
-    $('#check').text('비밀번호를 입력해주세요');
-    $('#check').css('color', '#6A24FE');
- }else{
-     $('#check').hide();
- }
- });
+function login() {
+    let id = $("#id").val();
+    let password = $("#password").val();
+
+    if (!checkId(id)) {
+        return;
+    }
+
+    if (!checkPassword(password)) {
+        return;
+    }
+
+    $.ajax({
+        type: 'post',
+        url: '/user/login',
+        data: {'id': id,
+                'password': password},
+        dataType: 'JSON',
+        success: function (data) {
+            if (!data.result) { //없으면 result가 true이다.
+                alert('아이디 혹은 비밀번호가 일치하지 않습니다.'); //상수처리하기
+            } else {
+                window.location.replace('/lottoStore');
+            }
+        }
+
+    });
+}
+

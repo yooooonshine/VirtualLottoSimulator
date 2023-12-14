@@ -8,28 +8,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 @Controller
-public class LottoStoreController {
+public class OrderController {
     private final LottoCalculator lottoCalculator;
     private final LottoMachine lottoMachine;
 
     @Autowired
-    public LottoStoreController(LottoCalculator lottoCalculator, LottoMachine lottoMachine) {
+    public OrderController(LottoCalculator lottoCalculator, LottoMachine lottoMachine) {
         this.lottoCalculator = lottoCalculator;
         this.lottoMachine = lottoMachine;
     }
 
-    @GetMapping("lottoStore")
+    @GetMapping("/lottoStore")
     public String lottoStore(Model model) {
         int nthInformation = 10; //추후 db에서 받도록 변경
         model.addAttribute("nttInformation", nthInformation);
         return "lottoStore";
     }
 
-    @GetMapping("lottoStore-parchaseAmount")
+    @GetMapping("/lottoStore-parchaseAmount")
     public String order(
             @RequestParam("purchaseAmount") String purchaseAmount,
             @RequestParam("userId") String userId,
