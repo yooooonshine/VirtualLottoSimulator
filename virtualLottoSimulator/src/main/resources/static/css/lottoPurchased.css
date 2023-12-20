@@ -1,0 +1,20 @@
+#gnb {
+    width: 100%;
+}
+
+#gnb > button {
+    width: 33%;
+    border: 1px solid lightgray;
+}
+
+.lottoRoundButton {
+    border: 1px solid lightgray;
+}
+
+#errorContent {
+    display: none;
+}
+
+#purchasedLottoContent {
+    display: none;
+}

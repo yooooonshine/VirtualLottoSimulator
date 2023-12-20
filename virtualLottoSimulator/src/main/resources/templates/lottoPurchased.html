@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+
+    <!-- 부트스트랩용 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- css파일 -->
+    <link rel="stylesheet" href="/css/lottoPurchased.css" type="text/css">
+
+    <!-- 제이쿼리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+<div id="header" class="container-md" background-color="black">
+    <div id="userIdBox"><span id="userId">chanho</span><span>님</span></div>
+</div>
+<nav id="gnbNav">
+    <div id="gnb" class="d-flex btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="flex-grow-1 btn btn-light" onclick="location.href = ''">로또 구매하기</button>
+        <button type="button" class="flex-grow-1 btn btn-light">구매한 로또</button>
+        <button type="button" class="flex-grow-1 btn btn-light">지난 회차로 로또 시뮬레이션하기</button>
+    </div>
+</nav>
+
+
+<div id="contents">
+    <div id="userLottoRoundListDiv" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+    </div>
+    <div id="purchasedLottoContent">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">순위</th>
+                <th scope="col">당첨금액</th>
+                <th scope="col">당첨기준</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1등</td>
+                <td id="firstPrice">2,000,000,000원</td>
+                <td>당첨번호 6개 숫자일치</td>
+            </tr>
+            <tr>
+                <td>2등</td>
+                <td id="secondPrice">50,000,000</td>
+                <td>당첨번호 5개 숫자일치 + 보너스 숫자 일치</td>
+            </tr>
+            <tr>
+                <td>3등</td>
+                <td id="thirdPrice">1,500,000원</td>
+                <td>당첨번호 5개 숫자일치</td>
+            </tr>
+            <tr>
+                <td>4등</td>
+                <td id="forthPrice">50,000원</td>
+                <td>당첨번호 4개 숫자일치</td>
+            </tr>
+            <tr>
+                <td>5등</td>
+                <td id="fifthPrice">5,000</td>
+                <td>당첨번호 3개 숫자일치</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">인덱스</th>
+                <th scope="col">구입한 로또 번호</th>
+            </tr>
+            </thead>
+            <tbody id="purchasedLottoTable">
+            <tr>
+                <th scope="row">1</th>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div id="lottoResultBox">
+            <div>로또 결과</div>
+            <div id="lottoResult"></div>
+            <div>1등 당첨개수: <span></span> 총 당첨금액: <span></span></div>
+            <div>2등 당첨개수: 1 총 당첨금액: 10000</div>
+            <div>3등 당첨개수: 1 총 당첨금액: 10000</div>
+            <div>4등 당첨개수: 1 총 당첨금액: 10000</div>
+            <div>5등 당첨개수: 1 총 당첨금액: 10000</div>
+            <br>
+            <div>총 구입금액: 5000원</div>
+            <div>총 당첨금액: 50000원</div>
+            <div>수익률: 1000%</div>
+        </div>
+
+    </div>
+</div>
+<div id="errorContent">해당하는 정보가 없습니다.</div>
+
+
+<div id="mySpinner">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<script src='/js/lottoPurchased.js'></script>
+</body>
+</html>
