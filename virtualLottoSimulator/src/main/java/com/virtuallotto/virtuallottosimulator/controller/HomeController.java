@@ -20,4 +20,19 @@ public class HomeController {
     public String lottoStore() {
         return "lottoStore";
     }
+
+    @RequestMapping("/main")
+    public String main() {
+        return "main";
+    }
+
+    @RequestMapping("/lottoPurchased")
+    public String lottoPurchased() {
+        return "lottoPurchased";
+    }
+
+    @RequestMapping("/purchaseLotto")
+    public String purchaseLotto() {
+        return "purchaseLotto";
+    }
 }

@@ -34,12 +34,12 @@ public class Order {
             fetch = FetchType.LAZY)
     private List<Lotto> lottoList = new ArrayList<>();
 
-    private Integer lottoRound;
+    private Long lottoRound;
 
-    private Integer purchaseAmount;
+    private Long purchaseAmount;
 
     // 생성 메서드
-    public static Order createOrder(User user, Integer purchaseAmount, Integer lottoRound) {
+    public static Order createOrder(User user, Long purchaseAmount, Long lottoRound) {
         Order order = new Order();
         order.setUser(user);
         order.setPurchaseAmount(purchaseAmount);
@@ -52,13 +52,13 @@ public class Order {
         user.getOrderList().add(this);
     }
 
-    private void setPurchaseAmount(Integer purchaseAmount) {
+    private void setPurchaseAmount(Long purchaseAmount) {
         isUnitsOfLottoPrice(purchaseAmount);
         isPositiveNumber(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
-    private void setLottoRound(Integer lottoRound) {
+    private void setLottoRound(Long lottoRound) {
         this.lottoRound = lottoRound;
     }
 
@@ -67,13 +67,13 @@ public class Order {
         lotto.setOrder(this);
     }
 
-    //주문 삭제
-    public void cancel() {
-
-    }
+//    //주문 삭제
+//    public void cancel() {
+//
+//    }
 
     //validator
-    private  void isUnitsOfLottoPrice(Integer input) {
+    private  void isUnitsOfLottoPrice(Long input) {
         if (input % NumberConstants.LOTTO_PRICE.getValue() == 0) {
             return;
         }
@@ -82,7 +82,7 @@ public class Order {
                 NumberConstants.LOTTO_PRICE.getValue()));
     }
 
-    private void isPositiveNumber(Integer input) {
+    private void isPositiveNumber(Long input) {
         if (input <= 0) {
             throw new IllegalArgumentException(INPUT_SHOULD_BE_POSITIVE_NUMBER);
         }

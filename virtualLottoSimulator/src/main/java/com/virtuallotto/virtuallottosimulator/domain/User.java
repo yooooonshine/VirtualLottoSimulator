@@ -18,17 +18,17 @@ public class User {
 
     private String password;
 
-    @Builder
-    private User(String id, String password) {
-        this.id = id;
-        this.password = password;
-    }
-
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Order> orderList = new ArrayList<>();
+
+    @Builder
+    private User(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
 
     public static User createUser(String id, String password) {
         return builder()

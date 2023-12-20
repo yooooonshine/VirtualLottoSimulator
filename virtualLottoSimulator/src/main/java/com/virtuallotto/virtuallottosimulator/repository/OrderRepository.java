@@ -12,18 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Repository
-@RequiredArgsConstructor
-public class OrderRepository {
-
-    private final EntityManager em;
-
-    public Long save(Order order) {
-        em.persist(order);
-        return order.getId();
-    }
-
-    public Order findOne(Long id){
-        return em.find(Order.class, id);
-    }
+public interface OrderRepository extends JpaRepository<Order, Long>{
+    List<Order> findByUserId(String userId);
 }

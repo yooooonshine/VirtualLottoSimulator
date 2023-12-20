@@ -6,7 +6,6 @@ import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -32,7 +31,7 @@ public class Lotto {
     }
 
     @Builder
-    private Lotto( String lottoNumber) {
+    private Lotto(String lottoNumber) {
         this.lottoNumber = lottoNumber;
     }
 

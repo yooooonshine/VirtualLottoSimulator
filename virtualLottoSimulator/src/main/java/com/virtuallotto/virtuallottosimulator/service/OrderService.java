@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,7 +21,7 @@ public class OrderService {
     private final LottoRepository lottoRepository;
     private final OrderRepository orderRepository;
 
-    public Long order(User user, Integer purchaseAmount, Integer lottoRound) {
+    public Long order(User user, Long purchaseAmount, Long lottoRound) {
         Order order = Order.createOrder(user, purchaseAmount, lottoRound);
 
         List<Lotto> lottoList = lottoMachine.generateTickets(purchaseAmount);
@@ -31,6 +32,13 @@ public class OrderService {
         return order.getId();
     }
 
+    public Optional<Order> findOne(Long id) {
+        return orderRepository.findById(id);
+    }
+
+    public List<Order> findByUserId(String userId) {
+        return orderRepository.findByUserId(userId);
+    }
 //    //주문 취소
 //    public void cancelOrder() {
 //

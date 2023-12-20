@@ -19,8 +19,8 @@ public class LottoMachine {
 
     private final LottoService lottoService;
 
-    public List<Lotto> generateTickets(int purchaseAmount) {
-        int ticketAmount = purchaseAmount / NumberConstants.LOTTO_PRICE.getValue();
+    public List<Lotto> generateTickets(Long purchaseAmount) {
+        int ticketAmount = purchaseAmount.intValue() / NumberConstants.LOTTO_PRICE.getValue();
         return generateLottoNumberRepeatNTimes(ticketAmount);
     }
 
