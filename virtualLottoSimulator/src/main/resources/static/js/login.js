@@ -38,7 +38,7 @@ function login() {
                 alert('아이디 혹은 비밀번호가 일치하지 않습니다.'); //상수처리하기
             } else {
                 localStorage.setItem('userId', id);
-                window.location.replace('/lottoStore');
+                window.location.replace('/main');
             }
         }
 

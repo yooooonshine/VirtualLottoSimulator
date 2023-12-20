@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+
+    <!-- 부트스트랩용 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- css파일 -->
+    <link rel="stylesheet" href="/css/purchaseLotto.css" type="text/css">
+
+    <!-- 제이쿼리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<header>
+
+</header>
+<body>
+<div id="header" class="container-md" background-color="black">
+    <div id="userIdBox"><span id="userId"></span><span>님</span></div>
+</div>
+<nav id="gnbNav">
+    <div id="gnb" class="d-flex btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="flex-grow-1 btn btn-light" onclick="window.location.replace('/purchaseLotto');">로또 구매하기</button>
+        <button type="button" class="flex-grow-1 btn btn-light" onclick="window.location.replace('/lottoPurchased');">구매한 로또</button>
+        <button type="button" class="flex-grow-1 btn btn-light">지난 회차로 로또 시뮬레이션하기</button>
+    </div>
+</nav>
+
+
+<div id="contents">
+    <div id="userLottoRoundListDiv" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+    </div>
+    <div id="purchaseLottoContent">
+        <div id="recentLottoRoundBox">
+            <div><span id="recentLottoRound"></span>회차 가상로또 구매하기</div>
+            실제 로또가 아니며, 결과는 돌아오는 토요일 이후에 확인하실 수 있습니다.
+        </div>
+
+        <input id="purchaseAmount" class="form-control" placeholder="구입 금액을 입력하세요." autofocus required>
+        1000원 단위로 입력해주세요.
+        최대 금액은 100,000,000원까지 가능합니다.
+        <button type="button" class="btn btn-primary" onclick="sendPurchaseAmount()">구매하기</button>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">인덱스</th>
+                <th scope="col">구입한 로또 번호</th>
+            </tr>
+            </thead>
+            <tbody id="purchasedLottoTable">
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<script src='/js/purchaseLotto.js'></script>
+</body>
+</html>

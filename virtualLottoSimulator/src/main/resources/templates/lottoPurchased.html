@@ -22,12 +22,12 @@
 
 <body>
 <div id="header" class="container-md" background-color="black">
-    <div id="userIdBox"><span id="userId">chanho</span><span>님</span></div>
+    <div id="userIdBox"><span id="userId"></span><span>님</span></div>
 </div>
 <nav id="gnbNav">
     <div id="gnb" class="d-flex btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="flex-grow-1 btn btn-light" onclick="location.href = ''">로또 구매하기</button>
-        <button type="button" class="flex-grow-1 btn btn-light">구매한 로또</button>
+        <button type="button" class="flex-grow-1 btn btn-light" onclick="window.location.replace('/purchaseLotto');">로또 구매하기</button>
+        <button type="button" class="flex-grow-1 btn btn-light" onclick="window.location.replace('/lottoPurchased');">구매한 로또</button>
         <button type="button" class="flex-grow-1 btn btn-light">지난 회차로 로또 시뮬레이션하기</button>
     </div>
 </nav>
@@ -116,11 +116,11 @@
 <div id="errorContent">해당하는 정보가 없습니다.</div>
 
 
-<div id="mySpinner">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>
+<!--<div id="mySpinner">-->
+<!--    <div class="spinner-border" role="status">-->
+<!--        <span class="visually-hidden">Loading...</span>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src='/js/lottoPurchased.js'></script>
 </body>

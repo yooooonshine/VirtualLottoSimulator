@@ -33,8 +33,9 @@ function loadUserLottoRoundList() {
         success: function (data) {
             $("#mySpinner").hide();
             let userLottoRoundList = data.userLottoRoundList;
-
+            console.log("안돼?");
             if (userLottoRoundList.length == 0) {
+                alert("구매한 로또가 없습니다.");
                 window.location.replace('/main');
             }
             printUserLottoRoundList(userLottoRoundList);
