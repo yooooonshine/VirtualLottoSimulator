@@ -11,10 +11,23 @@
     border: 1px solid lightgray;
 }
 
-#errorContent {
+#contentError {
     display: none;
 }
 
 #purchasedLottoContent {
     display: none;
+}
+
+#winningResult {
+    display: none;
+}
+
+#winningResultError {
+    display: none;
+}
+
+#userLottoListTableDiv {
+    max-height: 40vh;
+    overflow-y: auto;
 }

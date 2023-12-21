@@ -33,7 +33,6 @@ function loadUserLottoRoundList() {
         success: function (data) {
             $("#mySpinner").hide();
             let userLottoRoundList = data.userLottoRoundList;
-            console.log("안돼?");
             if (userLottoRoundList.length == 0) {
                 alert("구매한 로또가 없습니다.");
                 window.location.replace('/main');
@@ -44,15 +43,12 @@ function loadUserLottoRoundList() {
 
 }
 
-function printUserLottoRoundList(userlottoRoundList) {
+function printUserLottoRoundList(userLottoRoundList) {
     $("#userLottoRoundListDiv").empty();
     let htmlCode2 = "</button>";
-    let htmlCode1 = "<button class='btn lottoRoundButton' type='button' onclick='loadWinningResult(this)'>";
-    userlottoRoundList.forEach(lottoRound => $("#userLottoRoundListDiv").append(htmlCode1 + makeLottoRoundName(lottoRound) + htmlCode2));
+    let htmlCode1 = "<button class='btn lottoRoundButton' type='button' onclick='loadPurchasedLottoContent(this)'>";
+    userLottoRoundList.forEach(lottoRound => $("#userLottoRoundListDiv").append(htmlCode1 + makeLottoRoundName(lottoRound) + htmlCode2));
 }
-
-
-
 
 const ROUND_FORM = "회차";
 const LOTTO_DATE_FORM = '(${month}월 ${day}일)'
@@ -62,40 +58,91 @@ function makeLottoRoundName(lottoRound, date) {
 }
 
 
+
+function loadPurchasedLottoContent(event) {
+    let lottoRound = $(event).children('.userLottoRoundNumber').html();
+
+    //구매한 로또 티켓 가져오기
+    let purchasedLottoList = loadPurchasedLottoList(lottoRound);
+    if (purchasedLottoList.length != 0) {
+        $('#purchasedLottoContent').css('display', 'block');
+        printPurchasedLottoList(purchasedLottoList);
+    } else {
+        $('#purchasedLottoContent').css('display', 'none');
+        alert("해당 회차에 대한 구매정보가 없습니다.")
+    }
+
+    // 당첨번호가 있는 경우에만 load
+    if (hasWinningNumber(lottoRound)) {
+        $("#winningResult").css('display', 'block');
+        loadWinningResult(lottoRound);
+    } else {
+        $("#winningResult").css('display', 'none');
+        $("#winningResultError").css('display', 'block');
+    }
+}
+
 //유저가 선택한 회차에 맞는 구매 로또 리스트를 서버에서 가져온다.
 function loadPurchasedLottoList(lottoRound) {
+    let purchasedLottoList = [];
     $.ajax({
         type:"post",
         url: "/lottoPurchased/purchasedLottoList",
         data:{"userId" : userId,
             "lottoRound" : lottoRound},
         dataType:"json",
+        async: false,
         beforeSend: function (request) {
             $("#mySpinner").show();
         },
         success: function (data) {
             $("#mySpinner").hide();
-            let purchasedLottoList = data.purchasedLottoList;
-            printPurchasedLottoList(purchasedLottoList);
+
+            purchasedLottoList = data.purchasedLottoList;
+            // console.log("purchasedLottoList: " + purchasedLottoList);
         },
     });
+    return purchasedLottoList;
 }
 
 //유저가 선택한 회차에 맞는 구매 로또 리스트 출력
 function printPurchasedLottoList(purchasedLottoList) {
+    console.log(purchasedLottoList);
     const htmlCode1 = "<tr> <th scope='row'>"
     const htmlCode2 = "</th> <td>"
     const htmlCode3 = "</td> </tr>"
 
     $("#purchasedLottoTable").empty();
 
-    for (var i = 1; i <= purchasedLottoList.length; i++) {
+    for (let i = 1; i <= purchasedLottoList.length; i++) {
         $("#purchasedLottoTable").append(htmlCode1 + i + htmlCode2 + purchasedLottoList[i - 1] + htmlCode3 );
     }
 }
 
-function loadWinningResult(event) {
-    let lottoRound = $(event).children('.userLottoRoundNumber').html();
+function hasWinningNumber(lottoRound) {
+    let result;
+    $.ajax({
+        type:"post",
+        url: "/lottoPurchased/hasWinningNumber",
+        data:{
+            "lottoRound" : lottoRound},
+        dataType:"json",
+        async: false,
+        beforeSend: function (request) {
+            $("#mySpinner").show();
+        },
+        success: function (data) {
+            $("#mySpinner").hide();
+            result = data.result;
+        },
+        error : function (xhr, ajaxSettings, thrownError) {
+            result = false;
+        }
+    });
+    return result;
+}
+
+function loadWinningResult(lottoRound) {
     $.ajax({
         type:"post",
         url: "/lottoPurchased/winningResult",
@@ -106,20 +153,27 @@ function loadWinningResult(event) {
             $("#mySpinner").show();
         },
         success: function (data) {
+            // console.log("안돼>");
             $("#mySpinner").hide();
-            $('#loadingErrorContent').css('display', 'none');
-            $('#purchasedLottoContent').css('display', 'block');
-
-            printWinngingPriceList(data.winningPriceList);
+            // $("#winningResult").empty();
+            printWinningPrizeList(data.gameWinningPrizeList);
+            printUserWinningPriceList(data.gameWinningPrizeList, data.userWinningPrizeResult);
             printTotalPurchaseAmount(data.totalPurchaseAmount);
             printTotalWinningPrice(data.totalWinningPrice);
             printRateOfReturn(data.rateOfReturn);
         },
         error : function (xhr, ajaxSettings, thrownError) {
-            $('#errorContent').css('display', 'block');
-            $('#purchasedLottoContent').css('display', 'none');
+            console.log("당첨 통계 정보를 가져오는 데 실패했습니다.");
         }
     });
+}
+
+function printWinningPrizeList(gameWinningPrizeList) {
+    $("#firstPrice").text(gameWinningPrizeList[1]);
+    $("#secondPrice").text(gameWinningPrizeList[2]);
+    $("#thirdPrice").text(gameWinningPrizeList[3]);
+    $("#forthPrice").text(gameWinningPrizeList[4]);
+    $("#fifthPrice").text(gameWinningPrizeList[5]);
 }
 
 const NUMBER_OF_PRIZE = "등 당첨개수: ";
@@ -128,28 +182,36 @@ const TOTAL_PURCHASE_AMOUNT = "총 구입 금액: ";
 const RATE_OF_RETURN = "수익률: ";
 const WON = "원";
 
-function printWinngingPriceList(winningPriceList) {
-    for (var i = 0; i < winningPriceList.length; i++) {
-        let div = $("div");
-        div.html(NUMBER_OF_PRIZE + winningPriceList[i][0] + " " + TOTAL_WINNING_PRICE + winningPriceList[i][1] + WON);
-        $("#lottoResult").append(div);
+function printUserWinningPriceList(gameWinningPrizeList, userWinningPriceList) {
+    for (var i = 1; i < userWinningPriceList.length; i++) {
+        $('#lottoResult').append(
+            $('<div>').prop({
+                innerHTML: i + NUMBER_OF_PRIZE + userWinningPriceList[i][0] + ", " + TOTAL_WINNING_PRICE + userWinningPriceList[1]  + WON,
+            })
+        );
     }
 }
 
 function printTotalPurchaseAmount(purchaseAmount) {
-    let div = $("div");
-    div.html(TOTAL_PURCHASE_AMOUNT + purchaseAmount + WON);
-    $("#lottoResult").append(div);
+    $('#lottoResult').append(
+        $('<div>').prop({
+            innerHTML: TOTAL_PURCHASE_AMOUNT + purchaseAmount + WON,
+        })
+    );
 }
 
 function printTotalWinningPrice(totalWinningPrice) {
-    let div = $("div");
-    div.html(TOTAL_WINNING_PRICE + totalWinningPrice + WON);
-    $("#lottoResult").append(div);
+    $('#lottoResult').append(
+        $('<div>').prop({
+            innerHTML: TOTAL_WINNING_PRICE + totalWinningPrice + WON,
+        })
+    );
 }
 
 function printRateOfReturn(rateOfReturn) {
-    let div = $("div");
-    div.html(RATE_OF_RETURN + rateOfReturn + "%");
-    $("#lottoResult").append(div);
+    $('#lottoResult').append(
+        $('<div>').prop({
+            innerHTML: RATE_OF_RETURN + rateOfReturn + "%",
+        })
+    );
 }
