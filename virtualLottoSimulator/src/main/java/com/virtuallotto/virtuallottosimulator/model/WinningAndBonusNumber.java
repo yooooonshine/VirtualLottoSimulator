@@ -3,27 +3,19 @@ package com.virtuallotto.virtuallottosimulator.model;
 import java.util.List;
 
 public class WinningAndBonusNumber {
-    private static WinningAndBonusNumber winningAndBonusNumber =null;
-    private static WinningNumber winningNumber;
-    private static BonusNumber bonusNumber;
+    private List<Integer> winningNumber;
+    private int bonusNumber;
 
-    private WinningAndBonusNumber(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public WinningAndBonusNumber(List<Integer> winningNumber, int bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningAndBonusNumber create(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        if(winningAndBonusNumber == null){
-            winningAndBonusNumber = new WinningAndBonusNumber(winningNumber, bonusNumber);
-        }
-        return winningAndBonusNumber;
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
     }
 
-    public static List<Integer> getWinningNumber() {
-        return winningNumber.getWinningNumbers();
-    }
-
-    public static int getBonusNumber() {
-        return bonusNumber.getBonusNumber();
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

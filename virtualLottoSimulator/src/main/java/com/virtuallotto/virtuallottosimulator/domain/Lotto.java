@@ -6,7 +6,10 @@ import com.virtuallotto.virtuallottosimulator.validator.LottoValidator;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -50,6 +53,15 @@ public class Lotto {
         LottoValidator.validateNumberRangeInLotto(lottoNumberList);
     }
 
+    public List<Integer> getLottoNumberIntegerList() {
+        String[] lottoNumberList =  lottoNumber
+                .replaceAll("\\[", "") // '[' 제거
+                .replaceAll("\\]", "") // ']' 제거
+                .split(",");
+        return Arrays.stream(lottoNumberList)
+                .map(element -> Integer.parseInt(element.trim()))
+                .collect(Collectors.toList());
+    }
 
 
 
