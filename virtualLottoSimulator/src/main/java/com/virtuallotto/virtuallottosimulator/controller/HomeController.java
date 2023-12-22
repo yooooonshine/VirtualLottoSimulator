@@ -35,4 +35,9 @@ public class HomeController {
     public String purchaseLotto() {
         return "purchaseLotto";
     }
+
+    @RequestMapping("/instantLottoSimulator")
+    public String instantLottoSimulator() {
+        return "instantLottoSimulator";
+    }
 }

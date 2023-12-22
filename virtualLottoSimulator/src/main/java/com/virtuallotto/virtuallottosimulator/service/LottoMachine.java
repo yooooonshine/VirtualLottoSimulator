@@ -27,14 +27,14 @@ public class LottoMachine {
     private List<Lotto> generateLottoNumberRepeatNTimes(int repeatNumber) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < repeatNumber; i++) {
-            Lotto lotto = Lotto.createLotto(ConvertService.makeIntListToString(generateLottoNumber()));
+            Lotto lotto = Lotto.createLotto(ConvertService.makeIntListToString(generateLottoNumber(NUMBER_OF_NUMBERS_TO_MATCH.getValue())));
             lottoTickets.add(lottoService.saveLotto(lotto));
         }
         return lottoTickets;
     }
 
-    private List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers =pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), NUMBER_OF_NUMBERS_TO_MATCH.getValue());
+    public List<Integer> generateLottoNumber(int numberOfNumbersToMatch) {
+        List<Integer> lottoNumbers =pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue(), numberOfNumbersToMatch);
         return lottoNumbers.stream().sorted().collect(Collectors.toList());
     }
 
