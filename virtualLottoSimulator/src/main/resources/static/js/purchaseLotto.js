@@ -11,9 +11,9 @@ function loadUserName() {
         userId = localStorage.getItem('userId');
         printUserName();
     }
-    // else {
-    // 	window.location.replace('/');
-    // }
+    else {
+    	window.location.replace('/');
+    }
 }
 
 function printUserName() {

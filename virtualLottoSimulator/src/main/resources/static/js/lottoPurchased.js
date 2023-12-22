@@ -197,7 +197,7 @@ function printUserWinningPriceList(gameWinningPrizeList, userWinningPriceList) {
     for (var i = 1; i < userWinningPriceList.length; i++) {
         $('#lottoResult').append(
             $('<div>').prop({
-                innerHTML: i + NUMBER_OF_PRIZE + userWinningPriceList[i][0] + ", " + TOTAL_WINNING_PRICE + userWinningPriceList[1]  + WON,
+                innerHTML: i + NUMBER_OF_PRIZE + userWinningPriceList[i][0] + ", " + TOTAL_WINNING_PRICE + userWinningPriceList[i][1]  + WON,
             })
         );
     }

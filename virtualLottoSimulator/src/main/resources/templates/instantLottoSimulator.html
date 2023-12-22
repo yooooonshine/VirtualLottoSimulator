@@ -10,8 +10,8 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!-- css파일 -->
-    <link rel="stylesheet" href="/css/lottoPurchased.css" type="text/css">
-
+    <link rel="stylesheet" href="/css/instantLottoSimulator.css" type="text/css">
+6
     <!-- 제이쿼리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -34,7 +34,16 @@
 
 
 <div id="contents">
-    <div id="userLottoRoundListDiv" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+    <div id="purchaseLottoContent">
+        <div id="recentLottoRoundBox">
+            <div><span id="recentLottoRound"></span>가상로또 구매하기</div>
+            실제 로또가 아니며, 결과는 바로 확인하실 수 있습니다.
+        </div>
+
+        <input id="purchaseAmount" class="form-control" placeholder="구입 금액을 입력하세요." autofocus required>
+        1000원 단위로 입력해주세요.
+        최대 금액은 100,000,000원까지 가능합니다.
+        <button type="button" class="btn btn-primary" onclick="sendPurchaseAmount()">구매하기</button>
     </div>
 
     <div id="purchasedLottoContent">
@@ -110,6 +119,6 @@
 <!--    </div>-->
 <!--</div>-->
 
-<script src='/js/lottoPurchased.js'></script>
+<script src='/js/instantLottoSimulator.js'></script>
 </body>
 </html>

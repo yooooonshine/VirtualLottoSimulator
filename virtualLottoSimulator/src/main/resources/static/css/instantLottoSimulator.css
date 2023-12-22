@@ -1,0 +1,25 @@
+#gnb {
+    width: 100%;
+}
+
+#gnb > button {
+    width: 33%;
+    border: 1px solid lightgray;
+}
+
+#contentError {
+    display: none;
+}
+
+#winningResult {
+    display: none;
+}
+
+#winningResultError {
+    display: none;
+}
+
+#userLottoListTableDiv {
+    max-height: 40vh;
+    overflow-y: auto;
+}
