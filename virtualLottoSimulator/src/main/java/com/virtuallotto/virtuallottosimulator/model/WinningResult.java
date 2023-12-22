@@ -92,4 +92,12 @@ public class WinningResult {
     public int[][] getUserWinningPrizeResult() {
         return userWinningPrizeResult;
     }
+
+    public List<Integer> getWinningNumber() {
+        return winningAndBonusNumber.getWinningNumber();
+    }
+
+    public int getBonusNumber() {
+        return winningAndBonusNumber.getBonusNumber();
+    }
 }

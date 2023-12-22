@@ -117,6 +117,8 @@ public class LottoPurchasedController {
         WinningResult winningResult = new WinningResult(winningAndBonusNumber, gameWinningPrizeList, purchasedLottoList);
 
         WinningResultDTO winningResultDTO = new WinningResultDTO(
+                winningResult.getWinningNumber(),
+                winningResult.getBonusNumber(),
                 winningResult.getGameWinningPrizeList(),
                 winningResult.getUserWinningPrizeResult(),
                 winningResult.getTotalPurchaseAmount(),

@@ -156,6 +156,7 @@ function loadWinningResult(lottoRound) {
             // console.log("안돼>");
             $("#mySpinner").hide();
             // $("#winningResult").empty();
+            printWinningAndBonusNumber(data.winningNumber, data.bonusNumber);
             printWinningPrizeList(data.gameWinningPrizeList);
             printUserWinningPriceList(data.gameWinningPrizeList, data.userWinningPrizeResult);
             printTotalPurchaseAmount(data.totalPurchaseAmount);
@@ -166,6 +167,16 @@ function loadWinningResult(lottoRound) {
             console.log("당첨 통계 정보를 가져오는 데 실패했습니다.");
         }
     });
+}
+
+const WINNING_NUMBER = "당첨번호: ";
+const BONUS_NUMBER = " + ";
+function printWinningAndBonusNumber(winningNumber, bonusNumber) {
+    $('#lottoResult').append(
+        $('<div>').prop({
+            innerHTML: WINNING_NUMBER + winningNumber + BONUS_NUMBER + bonusNumber
+        })
+    );
 }
 
 function printWinningPrizeList(gameWinningPrizeList) {
