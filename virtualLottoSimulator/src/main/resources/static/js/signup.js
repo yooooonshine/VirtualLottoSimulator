@@ -52,12 +52,13 @@ function checkId() {
         data: {'id': id},
         dataType: 'JSON',
         success: function (data) {
-            if (!data.result) { //없으면 result가 true이다.
-                signUpCheck.setIdCheck(false);
-                alert('이미 사용중인 아이디 입니다.');
-            } else {
+            if (data.result) {
                 signUpCheck.setIdCheck(true);
                 alert('사용할 수 있는 아이디 입니다.');
+            } else {
+                signUpCheck.setIdCheck(false);
+                alert('이미 사용중인 아이디 입니다.');
+
             }
         }
     });

@@ -2,8 +2,6 @@ package com.virtuallotto.virtuallottosimulator.controller;
 
 import com.virtuallotto.virtuallottosimulator.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.type.TrueFalseConverter;
-import org.springframework.beans.factory.support.ManagedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +21,14 @@ public class UserController {
 
     @PostMapping("/id-duplication-check")
     @ResponseBody
-    public Object idDuplicationCheck(@RequestBody String id) {
+    public Object isNotIdDuplication(@RequestBody String id) {
         HashMap<String, Boolean> map = new HashMap<>();
-        Boolean result = userService.findUser(id) == null;
-        map.put("result", result);
+        if(userService.findUser(id) == null) {
+            System.out.println("id가 중복되었습니다.");
+            map.put("result", false);
+        } else {
+            map.put("result", true);
+        }
         return map;
     }
 
