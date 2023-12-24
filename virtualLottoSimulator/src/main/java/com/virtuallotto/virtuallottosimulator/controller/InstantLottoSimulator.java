@@ -43,7 +43,7 @@ public class InstantLottoSimulator {
 
         List<List<Integer>> lottoList = new ArrayList<>();
         for (int i = 0; i < purchaseLottoSize; i++) {
-            lottoList.add(lottoMachine.generateLottoNumber());
+            lottoList.add(lottoMachine.generateLottoNumber(NUMBER_OF_NUMBERS_TO_MATCH.getValue()));
         }
 
         List<Integer> randomWinningAndBonusNumber = lottoMachine.generateLottoNumber(7);
